@@ -3,9 +3,10 @@ services:
     name: coffeestore-django
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn Coffeestore.wsgi
+    startCommand: gunicorn coffee.wsgi
     envVars:
       - key: DEBUG
         value: "False"
       - key: SECRET_KEY
         generateValue: true
+
