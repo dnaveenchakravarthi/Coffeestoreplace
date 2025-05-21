@@ -1,0 +1,37 @@
+{% extends 'coffee/base.html' %}
+
+{% block content %}
+<h2 class="text-center mb-4">🛒 Your Cart</h2>
+
+{% if cart_items %}
+<div class="row g-3">
+    {% for item in cart_items %}
+    <div class="col-md-3">
+        <div class="card">
+            <img src="{{ item.coffee.image }}" class="card-img-top" alt="{{ item.coffee.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ item.coffee.name }}</h5>
+                <p class="card-text">Price: ${{ item.coffee.price }}</p>
+                <p class="card-text">Quantity: {{ item.quantity }}</p>
+                <p class="card-text">Total: ${{ item.item_total }}</p>
+                <!-- Optional: Add remove or update buttons -->
+                 <a href="{% url 'remove_from_cart' item.coffee.id %}" class="btn btn-danger">Remove</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<hr>
+<h4 class="text-end">🧾 Grand Total: ${{ total_price }}</h4>
+
+<div class="text-end mt-4">
+    <a href="{% url 'home' %}" class="btn btn-secondary">⬅️ Continue Shopping</a>
+</div>
+
+{% else %}
+ 
+<p class="text-center">Your cart is empty ☕</p>
+{% endif %}
+{% endblock %}
+

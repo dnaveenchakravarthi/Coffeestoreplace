@@ -1,0 +1,22 @@
+{% extends 'coffee/base.html' %}
+
+{% block content %}
+<h1 style="text-align: center; margin-bottom: 20px;">Feel Good Coffee</h1>
+<div class="row g-2">
+    {% for coffee in coffee %}
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ coffee.image }}" class="card-img-top" alt="{{ coffee.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ coffee.name }}</h5>
+                    <p class="card-text">${{ coffee.price }}</p>
+                    <p class="card-text">Qty: {{ coffee.quantity }}</p>
+                    <a href="{% url 'add_to_cart' coffee.id %}" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<a href="{% url 'cart_view' %}" class="btn btn-success mt-4">View Cart</a>
+{% endblock %}
+
